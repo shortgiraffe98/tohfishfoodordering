@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="logonslogan">
+        <img src="https://theme.hstatic.net/1000105320/1000414568/14/logo.png?v=338">
+        <h1>TOH FISH JOINT STOCK COMPANY</h1>
+        <h2>Trình tạo và chỉnh sửa đơn hàng Singapore</h2>
+        <div class="navbuttons">
+          <button onclick="neworder();" id="btn2">TẠO ĐƠN MỚI</button>
+          <button id="btn1">SỬA ĐƠN</button>
+        </div>
+        <div class="searchbox">
+          <input type="text" placeholder="Điền mã đơn hàng cần sửa" style="width: 200px; margin-right: 5px;" id="searchinput">
+          <i class='bx bx-search-alt-2' id="searchicon"></i>
+        </div>
+        
+    </div>
+    <div class="customerinfo">
+        <div class="basicinfo">
+            <table>
+                <tr>
+                    <td class="title">SĐT người đặt:</td>
+                    <td class="button"><button>Tìm</button></td>
+                    <td class="entry1"><input type="number" id="sdt1"></td>
+                    <td class="title" style="padding-left: 10px;">Tên người đặt</td>
+                    <td class="entry2"><input type="text" id="name1"></td>
+                </tr>
+                <tr>
+                    <td class="title">SĐT người nhận:</td>
+                    <td class="button"><input type="checkbox"></td>
+                    <td class="entry1"><input type="number" id="sdt2"></td>
+                    <td class="title" style="padding-left: 10px;">Tên người nhận</td>
+                    <td class="entry2"><input type="text" id="name2"></td>
+                </tr>
+                <tr>
+                    <td class="title">Mã bưu tín</td>
+                    <td class="button"><input type="checkbox"></td>
+                    <td class="entry1"><input type="text" id="postcode"></td>
+                    <td class="title" style="padding-left: 10px;">Email</td>
+                    <td class="entry2"><input type="text" id="emailadd"></td>
+                </tr>
+                <tr>
+                    
+                </tr>
+                <tr>
+                    <td class="title" colspan="2">Số nhà/Đường/Quận/TP</td>
+                    <td class="entry1" colspan="3"><input type="text" id="address"></td>
+                </tr>
+                <tr>
+                    <td class="title" colspan="2">Tòa nhà/Tầng/Số nhà</td>
+                    <td class="entry1" colspan="3"><input type="text" id="address2"></td>
+                </tr>
+                <tr>
+                    <td class="title" colspan="2">Ghi chú</td>
+                    <td class="entry1" colspan="3" style="margin: 0px; padding-left: 1px;"><textarea name="ordernote" id="ordernote" cols="40" rows="15" style="border-radius: 5px; padding: 5px; box-sizing: border-box;"></textarea></td>
+                </tr>
+            </table>
+        </div>
+        <div class="calculate">
+            <table>
+                <tr>
+                    <td class="title">Tổng tiền hàng</td>
+                    <td class="entry" id="subtotal">0.0 $</td>
+                </tr>
+                <tr>
+                    <td class="title">Tiền ship</td>
+                    <td class="entry"><input type="text" id="shipfee"></td>
+                </tr>
+                <tr>
+                    <td class="title">Số tiền giảm giá</td>
+                    <td class="entry"><input type="text" id="cpamount"></td>
+                </tr>
+                <tr>
+                    <td class="title">Lý do giảm giá</td>
+                    <td class="entry"><input type="text" id="cpcode"></td>
+                </tr>
+                <tr>
+                    <td class="title">Tổng đơn</td>
+                    <td class="entry" id="total">0.0 $</td>
+                </tr>
+                <tr>
+                    <td class="title">Nhân viên chốt đơn</td>
+                    <td class="entry">
+                        <select name="adminname" id="adminname">
+                            <option disabled value="none" selected>--Chọn--</option>
+                            <option value="Bích Vân">Bích Vân</option>
+                            <option value="Cẩm Vân">Cẩm Vân</option>
+                            <option value="Amy Nguyễn">Amy Nguyễn</option>
+                            <option value="Minh Phát">Minh Phát</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="tbbtn" id="preview"><button onclick="printbill();">IN ĐƠN</button></td>
+                    <td class="tbbtn" id="finished"><button onclick="placeOrder();">TẠO ĐƠN</button></td>
+                    
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="updateproducts">
+      <button onclick="updateproducts();"><i class='bx bx-refresh'></i></button>
+      <p>Cập nhật sản phẩm</p>
+    </div>
+    <div class="cartsection">
+        <div id="chooseproduct" class="chooseproduct">
+            <table id="selectProdTab">
+                <tr>
+                    <th style="width: 40%; font-weight: bold;">Tên sản phẩm</th>
+                    <th style="width: 12%; font-weight: bold;">Quy cách</th>
+                    <th style="width: 12%; font-weight: bold;">Số lượng</th>
+                    <th style="width: 12%; font-weight: bold;">Giá niêm yết</th>
+                    <th style="width: 12%; font-weight: bold;">Giá ưu đãi</th>
+                    <th style="width: 12%; font-weight: bold;">Thành tiền</th>
+                    <th>Xóa</th>
+                </tr>
+            </table>
+        </div>
+        <div class="addProduct"><i class='bx bx-cart-add' id="addProduct"></i></div>
+    </div>
+    <div class="footer"></div>
+    <script src="./scripts/orderProcess.js" type="text/javascript"></script>
+    <script src="../create/scripts/billPrinting.js" type="text/javascript"></script>
+</body>
+</html>
